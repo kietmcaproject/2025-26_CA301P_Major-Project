@@ -1,0 +1,343 @@
+[
+  {
+    "id": 1,
+    "title": "Solve Me First",
+    "name": "solve-me-first",
+    "category": "Arithmetic",
+    "description": "Given two integers a and b, compute and print their sum.",
+    "inputFormat": "Two space-separated integers on a single line.",
+    "outputFormat": "Print a single integer representing the sum.",
+    "constraints": "0 <= a, b <= 1000",
+    "example": [
+      {
+        "input": "2 3",
+        "output": "5",
+        "explanation": "The sum of 2 and 3 is 5."
+      },
+      { "input": "100 200", "output": "300", "explanation": "" },
+      { "input": "0 0", "output": "0", "explanation": "" },
+      { "input": "999 1", "output": "1000", "explanation": "" },
+      { "input": "123 456", "output": "579", "explanation": "" }
+    ],
+    "testCases": [
+      { "input": "2 3", "expected": "5", "isPublic": true },
+      { "input": "0 0", "expected": "0", "isPublic": true },
+      { "input": "999 1", "expected": "1000", "isPublic": true },
+      { "input": "500 500", "expected": "1000", "isPublic": true },
+      { "input": "1 1", "expected": "2", "isPublic": true },
+      { "input": "10 20", "expected": "30", "isPublic": true },
+      { "input": "100 900", "expected": "1000", "isPublic": true },
+      { "input": "123 456", "expected": "579", "isPublic": true },
+      { "input": "250 750", "expected": "1000", "isPublic": true },
+      { "input": "1000 0", "expected": "1000", "isPublic": true }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Simple Array Sum",
+    "name": "simple-array-sum",
+    "category": "Array",
+    "description": "Given an array of integers, find the sum of its elements.",
+    "inputFormat": "First line contains n (the number of elements). Second line contains n space-separated integers.",
+    "outputFormat": "Print a single integer denoting the sum of the array elements.",
+    "constraints": "0 <= n <= 1000, -1000 <= arr[i] <= 1000",
+    "example": [
+      {
+        "input": "6\n1 2 3 4 10 11",
+        "output": "31",
+        "explanation": "The sum of the array elements is 1 + 2 + 3 + 4 + 10 + 11 = 31."
+      },
+      { "input": "2\n-5 5", "output": "0", "explanation": "" },
+      { "input": "0\n", "output": "0", "explanation": "" },
+      { "input": "4\n100 200 300 400", "output": "1000", "explanation": "" },
+      { "input": "3\n-1 -2 -3", "output": "-6", "explanation": "" }
+    ],
+    "testCases": [
+      { "input": "6\n1 2 3 4 10 11", "expected": "31", "isPublic": true },
+      { "input": "2\n-5 5", "expected": "0", "isPublic": true },
+      { "input": "0\n", "expected": "0", "isPublic": true },
+      { "input": "4\n100 200 300 400", "expected": "1000", "isPublic": true },
+      { "input": "3\n-1 -2 -3", "expected": "-6", "isPublic": true },
+      { "input": "5\n10 10 10 10 10", "expected": "50", "isPublic": true },
+      { "input": "1\n-100", "expected": "-100", "isPublic": true },
+      { "input": "3\n0 0 0", "expected": "0", "isPublic": true },
+      { "input": "4\n1 1 1 1", "expected": "4", "isPublic": true },
+      { "input": "5\n-1 2 -3 4 -2", "expected": "0", "isPublic": true }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Compare the Triplets",
+    "name": "compare-the-triplets",
+    "category": "Array",
+    "description": "Alice and Bob each have three scores. Compare corresponding scores and award a point to the higher score.",
+    "inputFormat": "Two lines, each with three space-separated integers.",
+    "outputFormat": "Two integers a and b representing Alice's and Bob's points, respectively.",
+    "constraints": "1 <= scores <= 100",
+    "example": [
+      {
+        "input": "5 6 7\n3 6 10",
+        "output": "1 1",
+        "explanation": "Alice's score: [5, 6, 7]. Bob's score: [3, 6, 10]. Alice gets 1 point (5>3). Bob gets 1 point (10>7). No points for equal scores (6=6)."
+      },
+      { "input": "17 28 30\n99 16 8", "output": "2 1", "explanation": "" },
+      { "input": "1 1 1\n1 1 1", "output": "0 0", "explanation": "" },
+      { "input": "2 3 4\n4 3 2", "output": "1 1", "explanation": "" },
+      { "input": "10 20 30\n30 20 10", "output": "1 1", "explanation": "" }
+    ],
+    "testCases": [
+      { "input": "5 6 7\n3 6 10", "expected": "1 1", "isPublic": true },
+      { "input": "17 28 30\n99 16 8", "expected": "2 1", "isPublic": true },
+      { "input": "1 1 1\n1 1 1", "expected": "0 0", "isPublic": true },
+      { "input": "2 3 4\n4 3 2", "expected": "1 1", "isPublic": true },
+      { "input": "10 20 30\n30 20 10", "expected": "1 1", "isPublic": true },
+      { "input": "0 0 0\n0 0 0", "expected": "0 0", "isPublic": true },
+      { "input": "9 8 7\n1 2 3", "expected": "3 0", "isPublic": true },
+      { "input": "1 2 3\n3 2 1", "expected": "1 2", "isPublic": true },
+      { "input": "4 4 4\n4 4 3", "expected": "1 0", "isPublic": true },
+      { "input": "100 50 0\n100 50 0", "expected": "0 0", "isPublic": true }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "A Very Big Sum",
+    "name": "a-very-big-sum",
+    "category": "Arithmetic",
+    "description": "Calculate the sum of a list of long integers.",
+    "inputFormat": "First line contains n. Second line contains n space-separated integers.",
+    "outputFormat": "Print a single integer denoting the sum.",
+    "constraints": "1 <= n <= 10^5, each element up to 10^10",
+    "example": [
+      {
+        "input": "5\n1000000001 1000000002 1000000003 1000000004 1000000005",
+        "output": "5000000015",
+        "explanation": "The sum of the large integers is 5000000015."
+      },
+      { "input": "1\n9999999999", "output": "9999999999", "explanation": "" },
+      {
+        "input": "3\n-1000000000 0 1000000000",
+        "output": "0",
+        "explanation": ""
+      },
+      {
+        "input": "4\n5000000000 5000000000 5000000000 5000000000",
+        "output": "20000000000",
+        "explanation": ""
+      },
+      {
+        "input": "2\n123456789123 987654321987",
+        "output": "1111111111110",
+        "explanation": ""
+      }
+    ],
+    "testCases": [
+      { "input": "5\n1000000001 1000000002 1000000003 1000000004 1000000005", "expected": "5000000015", "isPublic": true },
+      { "input": "1\n9999999999", "expected": "9999999999", "isPublic": true },
+      { "input": "3\n-1000000000 0 1000000000", "expected": "0", "isPublic": true },
+      { "input": "4\n5000000000 5000000000 5000000000 5000000000", "expected": "20000000000", "isPublic": true },
+      { "input": "2\n123456789123 987654321987", "expected": "1111111111110", "isPublic": true },
+      { "input": "3\n1 2 3", "expected": "6", "isPublic": true },
+      { "input": "4\n1000000000 1000000000 1000000000 1000000000", "expected": "4000000000", "isPublic": true },
+      { "input": "2\n-5000000000 5000000000", "expected": "0", "isPublic": true },
+      { "input": "5\n0 0 0 0 0", "expected": "0", "isPublic": true },
+      { "input": "6\n10 20 30 40 50 60", "expected": "210", "isPublic": true }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Diagonal Difference",
+    "name": "diagonal-difference",
+    "category": "Matrix",
+    "description": "Compute the absolute difference between the sums of the matrix's two diagonals.",
+    "inputFormat": "First line contains n. Next n lines each contain n space-separated integers.",
+    "outputFormat": "Print a single integer: the absolute diagonal difference.",
+    "constraints": "1 <= n <= 100, -1000 <= elements <= 1000",
+    "example": [
+      {
+        "input": "3\n11 2 4\n4 5 6\n10 8 -12",
+        "output": "15",
+        "explanation": "Primary diagonal: 11 + 5 + (-12) = 4. Secondary diagonal: 4 + 5 + 10 = 19. Absolute difference: |4 - 19| = 15."
+      },
+      { "input": "1\n5", "output": "0", "explanation": "" },
+      { "input": "2\n1 2\n3 4", "output": "0", "explanation": "" },
+      {
+        "input": "4\n1 2 3 4\n5 6 7 8\n9 10 11 12\n13 14 15 16",
+        "output": "0",
+        "explanation": ""
+      },
+      {
+        "input": "3\n-1 -2 -3\n-4 -5 -6\n-7 -8 -9",
+        "output": "0",
+        "explanation": ""
+      }
+    ],
+    "testCases": [
+      { "input": "3\n11 2 4\n4 5 6\n10 8 -12", "expected": "15", "isPublic": true },
+      { "input": "1\n5", "expected": "0", "isPublic": true },
+      { "input": "2\n1 2\n3 4", "expected": "0", "isPublic": true },
+      { "input": "4\n1 2 3 4\n5 6 7 8\n9 10 11 12\n13 14 15 16", "expected": "0", "isPublic": true },
+      { "input": "3\n-1 -2 -3\n-4 -5 -6\n-7 -8 -9", "expected": "0", "isPublic": true },
+      { "input": "2\n2 0\n0 2", "expected": "0", "isPublic": true },
+      { "input": "3\n1 0 0\n0 1 0\n0 0 1", "expected": "0", "isPublic": true },
+      { "input": "3\n1 2 3\n4 5 6\n7 8 9", "expected": "0", "isPublic": true },
+      { "input": "3\n2 2 2\n2 2 2\n2 2 2", "expected": "0", "isPublic": true },
+      { "input": "3\n5 0 0\n0 0 0\n0 0 1", "expected": "4", "isPublic": true }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Plus Minus",
+    "name": "plus-minus",
+    "category": "Array",
+    "description": "Calculate and print the ratios of positive, negative and zero values in the array.",
+    "inputFormat": "First line contains n. Second line contains n space-separated integers.",
+    "outputFormat": "Print three lines, each with a decimal value (6 places) for positive, negative, and zero ratios.",
+    "constraints": "1 <= n <= 100, -100 <= arr[i] <= 100",
+    "example": [
+      {
+        "input": "6\n-4 3 -9 0 4 1",
+        "output": "0.500000\n0.333333\n0.166667",
+        "explanation": "There are 3 positive numbers, 2 negative numbers, and 1 zero. Ratios: 3/6=0.5, 2/6=0.333333, 1/6=0.166667."
+      },
+      {
+        "input": "3\n0 0 0",
+        "output": "0.000000\n0.000000\n1.000000",
+        "explanation": ""
+      },
+      {
+        "input": "1\n5",
+        "output": "1.000000\n0.000000\n0.000000",
+        "explanation": ""
+      },
+      {
+        "input": "5\n-1 -1 -1 -1 -1",
+        "output": "0.000000\n1.000000\n0.000000",
+        "explanation": ""
+      },
+      {
+        "input": "4\n1 -1 0 0",
+        "output": "0.250000\n0.250000\n0.500000",
+        "explanation": ""
+      }
+    ],
+    "testCases": [
+      { "input": "6\n-4 3 -9 0 4 1", "expected": "0.500000\n0.333333\n0.166667", "isPublic": true },
+      { "input": "3\n0 0 0", "expected": "0.000000\n0.000000\n1.000000", "isPublic": true },
+      { "input": "1\n5", "expected": "1.000000\n0.000000\n0.000000", "isPublic": true },
+      { "input": "5\n-1 -1 -1 -1 -1", "expected": "0.000000\n1.000000\n0.000000", "isPublic": true },
+      { "input": "4\n1 -1 0 0", "expected": "0.250000\n0.250000\n0.500000", "isPublic": true },
+      { "input": "4\n1 1 1 1", "expected": "1.000000\n0.000000\n0.000000", "isPublic": true },
+      { "input": "4\n-1 -2 -3 -4", "expected": "0.000000\n1.000000\n0.000000", "isPublic": true },
+      { "input": "5\n1 0 -1 0 1", "expected": "0.400000\n0.200000\n0.400000", "isPublic": true },
+      { "input": "2\n0 1", "expected": "0.500000\n0.000000\n0.500000", "isPublic": true },
+      { "input": "3\n2 3 4", "expected": "1.000000\n0.000000\n0.000000", "isPublic": true }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Staircase",
+    "name": "staircase",
+    "category": "Pattern",
+    "description": "Print a right-aligned staircase of height n using '#'.",
+    "inputFormat": "A single integer n.",
+    "outputFormat": "n lines of '#' characters forming a staircase.",
+    "constraints": "1 <= n <= 100",
+    "example": [
+      {
+        "input": "4",
+        "output": "   #\n  ##\n ###\n####",
+        "explanation": "A staircase of size 4 is printed, right-aligned."
+      },
+      { "input": "1", "output": "#", "explanation": "" },
+      { "input": "2", "output": " #\n##", "explanation": "" },
+      {
+        "input": "5",
+        "output": "    #\n   ##\n  ###\n ####\n#####",
+        "explanation": ""
+      },
+      { "input": "3", "output": "  #\n ##\n###", "explanation": "" }
+    ],
+    "testCases": [
+      { "input": "4", "expected": "   #\n  ##\n ###\n####", "isPublic": true },
+      { "input": "1", "expected": "#", "isPublic": true },
+      { "input": "2", "expected": " #\n##", "isPublic": true },
+      { "input": "5", "expected": "    #\n   ##\n  ###\n ####\n#####", "isPublic": true },
+      { "input": "3", "expected": "  #\n ##\n###", "isPublic": true },
+      { "input": "6", "expected": "     #\n    ##\n   ###\n  ####\n #####\n######", "isPublic": true },
+      { "input": "7", "expected": "      #\n     ##\n    ###\n   ####\n  #####\n ######\n#######", "isPublic": true },
+      { "input": "8", "expected": "       #\n      ##\n     ###\n    ####\n   #####\n  ######\n #######\n########", "isPublic": true },
+      { "input": "9", "expected": "        #\n       ##\n      ###\n     ####\n    #####\n   ######\n  #######\n ########\n#########", "isPublic": true },
+      { "input": "10", "expected": "         #\n        ##\n       ###\n      ####\n     #####\n    ######\n   #######\n  ########\n #########\n##########", "isPublic": true }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Mini-Max Sum",
+    "name": "mini-max-sum",
+    "category": "Array",
+    "description": "Given five positive integers, find the minimum and maximum values that can be calculated by summing exactly four of the five integers.",
+    "inputFormat": "Five space-separated integers.",
+    "outputFormat": "Two space-separated integers: the min sum and max sum.",
+    "constraints": "Each integer <= 10^9",
+    "example": [
+      {
+        "input": "1 2 3 4 5",
+        "output": "10 14",
+        "explanation": "Minimum sum (sum of all but 5): 1+2+3+4=10. Maximum sum (sum of all but 1): 2+3+4+5=14."
+      },
+      { "input": "5 5 5 5 5", "output": "20 20", "explanation": "" },
+      { "input": "7 69 2 221 8974", "output": "299 9271", "explanation": "" },
+      {
+        "input": "1000000000 1000000000 1000000000 1000000000 1000000000",
+        "output": "4000000000 4000000000",
+        "explanation": ""
+      },
+      { "input": "3 1 1 1 2", "output": "5 8", "explanation": "" }
+    ],
+    "testCases": [
+      { "input": "1 2 3 4 5", "expected": "10 14", "isPublic": true },
+      { "input": "5 5 5 5 5", "expected": "20 20", "isPublic": true },
+      { "input": "7 69 2 221 8974", "expected": "299 9271", "isPublic": true },
+      { "input": "1000000000 1000000000 1000000000 1000000000 1000000000", "expected": "4000000000 4000000000", "isPublic": true },
+      { "input": "3 1 1 1 2", "expected": "5 8", "isPublic": true },
+      { "input": "2 3 4 5 6", "expected": "14 18", "isPublic": true },
+      { "input": "10 10 10 10 9", "expected": "39 40", "isPublic": true },
+      { "input": "0 1 2 3 4", "expected": "6 10", "isPublic": true },
+      { "input": "1 1 1 1 2", "expected": "4 5", "isPublic": true },
+      { "input": "9 8 7 6 5", "expected": "26 30", "isPublic": true }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Time Conversion",
+    "name": "time-conversion",
+    "category": "String",
+    "description": "Convert time from 12-hour AM/PM format to 24-hour format.",
+    "inputFormat": "A single string in the format hh:mm:ssAM or hh:mm:ssPM.",
+    "outputFormat": "Time in 24-hour format (HH:MM:SS).",
+    "constraints": "Valid 12-hour time format.",
+    "example": [
+      {
+        "input": "07:05:45PM",
+        "output": "19:05:45",
+        "explanation": "7 PM is 19 in 24-hour format."
+      },
+      { "input": "12:00:00AM", "output": "00:00:00", "explanation": "" },
+      { "input": "12:45:54PM", "output": "12:45:54", "explanation": "" },
+      { "input": "01:00:00AM", "output": "01:00:00", "explanation": "" },
+      { "input": "11:59:59PM", "output": "23:59:59", "explanation": "" }
+    ],
+    "testCases": [
+      { "input": "07:05:45PM", "expected": "19:05:45", "isPublic": true },
+      { "input": "12:00:00AM", "expected": "00:00:00", "isPublic": true },
+      { "input": "12:45:54PM", "expected": "12:45:54", "isPublic": true },
+      { "input": "01:00:00AM", "expected": "01:00:00", "isPublic": true },
+      { "input": "11:59:59PM", "expected": "23:59:59", "isPublic": true },
+      { "input": "12:30:00PM", "expected": "12:30:00", "isPublic": true },
+      { "input": "12:01:00AM", "expected": "00:01:00", "isPublic": true },
+      { "input": "06:00:00AM", "expected": "06:00:00", "isPublic": true },
+      { "input": "09:15:10PM", "expected": "21:15:10", "isPublic": true },
+      { "input": "03:45:59AM", "expected": "03:45:59", "isPublic": true }
+    ]
+  }
+]
