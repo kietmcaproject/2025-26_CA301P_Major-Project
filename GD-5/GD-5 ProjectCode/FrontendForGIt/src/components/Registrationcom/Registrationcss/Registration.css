@@ -1,0 +1,41 @@
+.imageareaforteacher{
+    background-image: url('../../../assets/teacher.jpg');
+    background-position: center;
+    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity));
+    background-size: cover;
+    box-shadow: -3px 14px 54px rgba(255, 255, 255, 0.516);
+    max-width: 100;
+}
+
+.imagesizecontroller img{
+    width: 10rem;
+    height: fit-content;
+    object-fit: cover;
+}
+
+.imageareacontrol{
+    max-width: 30%;
+}
+
+.textareacontrol{
+    max-width: 70%;
+}
+
+@media only screen and (max-width:960px) {
+    .formresponsive{
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        text-align: left;
+    }
+    .imageareaforteacher{
+        flex-direction: column;
+    }
+    .imageareacontrol{
+        max-width: 100%;
+    }
+    
+    .textareacontrol{
+        max-width: 100%;
+    }
+}

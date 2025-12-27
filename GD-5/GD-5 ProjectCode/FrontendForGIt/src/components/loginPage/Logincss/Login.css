@@ -1,0 +1,19 @@
+.outerloginpagebox {
+    background-image: url("../../../assets/loginimage1.jpg");
+    background-color: white;
+    background-size: cover;
+    background-position:center ;
+    box-shadow: 1px -5px 25px 4px rgba(255, 255, 255, 0.37);
+    border: 3px solid darkgrey;
+}
+
+.upperouterimagearea {
+    background-image: url("../../../assets/loginouterimg.jpg");
+}
+
+@media only screen and (max-width: 1024px) {
+    .formloginmobileview {
+        flex-direction: column;
+    }
+
+}

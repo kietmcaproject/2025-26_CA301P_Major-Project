@@ -1,0 +1,15 @@
+.HelloCodersLogo img {
+    object-fit: cover;
+    max-width: fit-content;
+    width: 100%;
+    height: 4rem;
+    margin: 0;
+}
+
+@media only screen and (max-width: 768px) {
+    .rightcontainer {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+}
