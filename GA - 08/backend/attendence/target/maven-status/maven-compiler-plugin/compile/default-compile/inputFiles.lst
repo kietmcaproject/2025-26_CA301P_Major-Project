@@ -1,0 +1,14 @@
+D:\MCA\III sem\Major Project\smart-attendance-system\backend\attendence\src\main\java\com\smartattendence\attendence\AttendenceApplication.java
+D:\MCA\III sem\Major Project\smart-attendance-system\backend\attendence\src\main\java\com\smartattendence\attendence\config\WebConfig.java
+D:\MCA\III sem\Major Project\smart-attendance-system\backend\attendence\src\main\java\com\smartattendence\attendence\controller\AdminController.java
+D:\MCA\III sem\Major Project\smart-attendance-system\backend\attendence\src\main\java\com\smartattendence\attendence\controller\AttendanceController.java
+D:\MCA\III sem\Major Project\smart-attendance-system\backend\attendence\src\main\java\com\smartattendence\attendence\controller\StudentController.java
+D:\MCA\III sem\Major Project\smart-attendance-system\backend\attendence\src\main\java\com\smartattendence\attendence\entity\Admin.java
+D:\MCA\III sem\Major Project\smart-attendance-system\backend\attendence\src\main\java\com\smartattendence\attendence\entity\Attendance.java
+D:\MCA\III sem\Major Project\smart-attendance-system\backend\attendence\src\main\java\com\smartattendence\attendence\entity\Student.java
+D:\MCA\III sem\Major Project\smart-attendance-system\backend\attendence\src\main\java\com\smartattendence\attendence\repository\AdminRepository.java
+D:\MCA\III sem\Major Project\smart-attendance-system\backend\attendence\src\main\java\com\smartattendence\attendence\repository\AttendanceRepository.java
+D:\MCA\III sem\Major Project\smart-attendance-system\backend\attendence\src\main\java\com\smartattendence\attendence\repository\StudentRepository.java
+D:\MCA\III sem\Major Project\smart-attendance-system\backend\attendence\src\main\java\com\smartattendence\attendence\services\AdminService.java
+D:\MCA\III sem\Major Project\smart-attendance-system\backend\attendence\src\main\java\com\smartattendence\attendence\services\AttendanceService.java
+D:\MCA\III sem\Major Project\smart-attendance-system\backend\attendence\src\main\java\com\smartattendence\attendence\services\StudentService.java

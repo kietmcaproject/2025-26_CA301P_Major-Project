@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>View Student</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; margin: 0; padding: 0; }
+    .top-btns {
+      display: flex;
+      justify-content: space-between;
+      width: 50%;
+      margin: 20px auto 0;
+    }
+    .top-btns button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .top-btns button:hover { background: #0056b3; }
+    .container { width: 50%; margin: 20px auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.2); text-align: center; }
+    h2 { color: #007bff; margin-bottom: 20px; }
+    img { width: 150px; height: 150px; border-radius: 10px; object-fit: cover; margin-bottom: 15px; }
+    .detail { margin: 10px 0; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <div class="top-btns">
+    <button onclick="goBack()">⬅ Back</button>
+    <button onclick="window.location.href='index.html'">🏠 Home</button>
+  </div>
+
+  <div class="container">
+    <h2>👤 Student Details</h2>
+    <img id="studentImg" src="" alt="Student Image">
+    <div id="details"></div>
+  </div>
+
+  <script>
+    const API_URL = "http://localhost:9090/api/students";
+    const BASE_IMG = "http://localhost:9090/images/";
+    const registrationNo = new URLSearchParams(window.location.search).get("registrationNo");
+
+    function getFolderName(name, regNo) {
+      const digits = regNo.replace(/\D/g, "");
+      const padded = digits.padStart(4, "0");
+      return `${name.replace(/\s+/g, "_")}${padded}`;
+    }
+
+    // ✅ Fixed: image name always img2.jpg
+    function getImageName() {
+      return "img2.jpg";
+    }
+
+    async function fetchStudent() {
+      try {
+        const res = await fetch(`${API_URL}/${encodeURIComponent(registrationNo)}`);
+        const student = await res.json();
+        const folderName = getFolderName(student.name, student.registrationNo);
+        document.getElementById("studentImg").src = `${BASE_IMG}${folderName}/${getImageName()}`;
+
+        document.getElementById("details").innerHTML = `
+          <div class="detail"><strong>Name:</strong> ${student.name}</div>
+          <div class="detail"><strong>Registration No:</strong> ${student.registrationNo}</div>
+          <div class="detail"><strong>Email:</strong> ${student.email}</div>
+        `;
+      } catch {
+        alert("⚠️ Error fetching student details!");
+      }
+    }
+
+    function goBack() {
+      window.location.href = "view_Registered_students.html";
+    }
+
+    fetchStudent();
+  </script>
+</body>
+</html>

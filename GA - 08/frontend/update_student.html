@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Student</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f5f6fa; margin: 0; padding: 0; }
+    .top-btns {
+      display: flex;
+      justify-content: space-between;
+      width: 60%;
+      margin: 20px auto 0;
+    }
+    .top-btns button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .top-btns button:hover { background: #0056b3; }
+    .container { width: 60%; margin: 20px auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+    h2 { text-align: center; color: #007bff; }
+    label { display: block; margin-top: 15px; font-weight: 600; }
+    input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; margin-top: 5px; }
+    input[readonly] { background: #f0f0f0; cursor: not-allowed; }
+    img { width: 100px; height: 100px; border-radius: 8px; margin-top: 10px; object-fit: cover; }
+    button.submit-btn { background: #28a745; color: #fff; padding: 12px 20px; border: none; border-radius: 6px; cursor: pointer; margin-top: 20px; font-size: 16px; }
+    button.submit-btn:hover { background: #218838; }
+  </style>
+</head>
+<body>
+  <div class="top-btns">
+    <button onclick="window.location.href='view_Registered_students.html'">⬅ Back</button>
+    <button onclick="window.location.href='index.html'">🏠 Home</button>
+  </div>
+
+  <div class="container">
+    <h2>📝 Update Student</h2>
+    <form id="updateForm">
+      <label>Registration No:</label>
+      <input type="text" id="registrationNo" readonly>
+
+      <label>Name:</label>
+      <input type="text" id="name" required>
+
+      <label>Email:</label>
+      <input type="email" id="email" required>
+
+      <label>Password:</label>
+      <input type="text" id="password">
+
+      <label>Profile Image:</label>
+      <img id="studentImg" src="" alt="Student Image">
+
+      <button type="submit" class="submit-btn">Update</button>
+    </form>
+  </div>
+
+  <script>
+    const API_URL = "http://localhost:9090/api/students";
+    const IMAGE_BASE = "http://localhost:9090/images/";
+    const params = new URLSearchParams(window.location.search);
+    const registrationNo = params.get("registrationNo");
+
+    if (!registrationNo) {
+      alert("Missing registrationNo in URL!");
+      throw new Error("Missing registrationNo");
+    }
+
+    function getFolderName(name, regNo) {
+      const digits = regNo.replace(/\D/g, "");
+      const padded = digits.padStart(4, "0");
+      return `${name.replace(/\s+/g, "_")}${padded}`;
+    }
+
+    // ✅ Fixed: Image name is always img2.jpg
+    function getImageName() {
+      return "img2.jpg";
+    }
+
+    async function fetchStudent() {
+      try {
+        const res = await fetch(`${API_URL}/${encodeURIComponent(registrationNo)}`);
+        if (!res.ok) throw new Error("Fetch failed");
+        const student = await res.json();
+
+        document.getElementById("registrationNo").value = student.registrationNo;
+        document.getElementById("name").value = student.name || "";
+        document.getElementById("email").value = student.email || "";
+        document.getElementById("password").value = student.password || "";
+
+        const folder = getFolderName(student.name, student.registrationNo);
+        document.getElementById("studentImg").src = `${IMAGE_BASE}${folder}/${getImageName()}`;
+      } catch (err) {
+        console.error(err);
+        alert("Error fetching student details!");
+      }
+    }
+
+    document.getElementById("updateForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const updatedData = {
+        name: document.getElementById("name").value.trim(),
+        registrationNo: document.getElementById("registrationNo").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        password: document.getElementById("password").value
+      };
+
+      try {
+        const res = await fetch(`${API_URL}/${encodeURIComponent(registrationNo)}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedData)
+        });
+
+        if (res.ok) {
+          const newFolder = getFolderName(updatedData.name, updatedData.registrationNo);
+          document.getElementById("studentImg").src = `${IMAGE_BASE}${newFolder}/${getImageName()}`;
+          alert("✅ Student updated successfully!");
+          window.location.href = "view_Registered_students.html";
+        } else {
+          alert("❌ Update failed!");
+        }
+      } catch (err) {
+        alert("⚠️ Error updating student!");
+      }
+    });
+
+    fetchStudent();
+  </script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Registered Students</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f6fa;
+      margin: 0;
+      padding: 0;
+    }
+    .top-btns {
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      margin: 20px auto 0;
+    }
+    .top-btns button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .top-btns button:hover {
+      background: #0056b3;
+    }
+    .container {
+      width: 90%;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background: #007bff;
+      color: white;
+    }
+    tr:hover {
+      background: #f1f1f1;
+    }
+    img {
+      width: 70px;
+      height: 70px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    .action-btn {
+      border: none;
+      padding: 6px 12px;
+      margin: 3px;
+      border-radius: 5px;
+      cursor: pointer;
+      color: white;
+      font-size: 14px;
+    }
+    .update-btn { background: #28a745; }
+    .show-btn { background: #17a2b8; }
+    .bottom-delete {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-btns">
+    <button onclick="window.location.href='index.html'"><i class="fa fa-home"></i> Home</button>
+  </div>
+
+  <div class="container">
+    <h2>📋 Registered Students</h2>
+    <table id="studentsTable">
+      <thead>
+        <tr>
+          <th>Serial No</th>
+          <th>Select</th>
+          <th>Name</th>
+          <th>Registration No</th>
+          <th>Email</th>
+          <th>Image</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="studentBody">
+        <tr><td colspan="7">Loading data...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <button id="deleteSelected" class="bottom-delete" onclick="deleteSelected()">Delete Selected</button>
+
+  <script>
+    const API_URL = "http://localhost:9090/api/students";
+    const BASE_IMAGE_PATH = "http://localhost:9090/images/";
+
+    async function fetchStudents() {
+      try {
+        const res = await fetch(API_URL);
+        const students = await res.json();
+        displayStudents(students);
+      } catch (err) {
+        document.getElementById("studentBody").innerHTML =
+          `<tr><td colspan="7" style="color:red;">Error fetching data!</td></tr>`;
+      }
+    }
+
+    function displayStudents(students) {
+      const tbody = document.getElementById("studentBody");
+      tbody.innerHTML = "";
+      if (students.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7">No students found.</td></tr>`;
+        return;
+      }
+
+      students.forEach((student, index) => {
+        const folderName = getFolderName(student.name, student.registrationNo);
+        // ✅ 1st Change: fixed image name to img2.jpg
+        const imageUrl = `${BASE_IMAGE_PATH}${folderName}/img2.jpg`;
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${index + 1}</td>
+          <td><input type="checkbox" class="selectBox" value="${student.registrationNo}" onchange="toggleDeleteBtn()"></td>
+          <td>${student.name}</td>
+          <td>${student.registrationNo}</td>
+          <td>${student.email}</td>
+          <td><img src="${imageUrl}" alt="Image"></td>
+          <td>
+            <button class="action-btn update-btn" onclick="updateStudent('${student.registrationNo}')">Update</button>
+            <button class="action-btn show-btn" onclick="showStudent('${student.registrationNo}')">Show Details</button>
+            <button class="action-btn show-btn" style="background:#6f42c1;" onclick="showAttendance('${student.registrationNo}')">Show Attendance</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function getFolderName(name, regNo) {
+      const digits = regNo.replace(/\D/g, "");
+      const padded = digits.padStart(4, "0");
+      return `${name.replace(/\s+/g, "_")}${padded}`;
+    }
+
+    function toggleDeleteBtn() {
+      const checkboxes = document.querySelectorAll(".selectBox:checked");
+      document.getElementById("deleteSelected").style.display = checkboxes.length > 0 ? "block" : "none";
+    }
+
+    async function deleteSelected() {
+      const selected = Array.from(document.querySelectorAll(".selectBox:checked")).map(cb => cb.value);
+      if (selected.length === 0) return;
+      if (!confirm(`Delete ${selected.length} selected student(s)?`)) return;
+
+      for (const regNo of selected) {
+        try {
+          await fetch(`${API_URL}/${encodeURIComponent(regNo)}`, { method: "DELETE" });
+        } catch (err) {
+          console.error("Delete error:", err);
+        }
+      }
+      alert("Selected students deleted successfully!");
+      fetchStudents();
+      toggleDeleteBtn();
+    }
+
+    function updateStudent(registrationNo) {
+      window.location.href = `update_student.html?registrationNo=${encodeURIComponent(registrationNo)}`;
+    }
+
+    // ✅ 2nd Change: Added working Show Details function
+    function showStudent(registrationNo) {
+      window.location.href = `show_student.html?registrationNo=${encodeURIComponent(registrationNo)}`;
+    }
+
+    function showAttendance(registrationNo) {
+      window.location.href = `show_student_attendance.html?registrationNo=${encodeURIComponent(registrationNo)}`;
+    }
+
+    document.addEventListener("DOMContentLoaded", fetchStudents);
+  </script>
+</body>
+</html>

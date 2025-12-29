@@ -1,0 +1,291 @@
+:root {
+            --primary-gradient: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            --secondary-gradient: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+            --success-gradient: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            --warning-gradient: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+            
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --success-color: #27ae60;
+            --warning-color: #e67e22;
+            --danger-color: #e74c3c;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --gray-color: #95a5a6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0e3c82 0%, #070707 50%, #24243e 100%);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+
+
+         header {
+    top: 0;
+    margin-bottom: 60px;
+    padding: 0px 0px 0px 50px;
+    background-color: black;
+    color: white;    
+    border-bottom: 4px solid black;
+    box-shadow: 
+        0 0px 0px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(0, 96, 249, 0.8);
+    position: sticky;
+    overflow: hidden;
+    z-index: 8;
+    
+    
+}
+span{
+    color: red;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: rotate(45deg);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: rotate(45deg) translateX(-100%); }
+    100% { transform: rotate(45deg) translateX(100%); }
+}
+
+h1 {
+    font-size: 5rem;
+    margin-bottom: -32px;
+    font-weight: 700;
+    /* text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); */
+    background: linear-gradient(45deg, #ffffff, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .attendance-controls {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .start-btn {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 16px 45px;
+            font-size: 18px;
+            border-radius: 50px;
+            box-shadow: 0 6px 12px rgba(52, 152, 219, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .start-btn.recording {
+            background: var(--danger-color);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .content {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 968px) {
+            .content {
+                flex-direction: column;
+            }
+        }
+        
+        .camera-section, .results-section {
+            flex: 1;
+            background: rgba(36, 29, 29, 0);
+            backdrop-filter: blur(20px);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--light-color);
+            color: #00d5ff;
+            font-weight: 600;
+        }
+        
+        .video-container {
+            width: 100%;
+            border: 3px dotted rgb(0, 133, 249);
+            border-radius: 20px;
+            background: black;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            position: relative;
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #attendanceVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+        
+        .camera-placeholder {
+            color: var(--gray-color);
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .recording-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+            color: var(--danger-color);
+            font-weight: 600;
+            display: none;
+        }
+        
+        .recording-dot {
+            width: 12px;
+            height: 12px;
+            background-color: var(--danger-color);
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        
+        .attendance-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .attendance-table th, .attendance-table td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--light-color);
+        }
+        
+        .attendance-table th {
+            background-color: #007ff6;
+            font-weight: 600;
+            color: var(--light-color);
+        }
+        
+        .attendance-table tr:hover {
+            background-color: #000000;
+            border-radius: 20px;
+        }
+        
+        .status-present {
+            color: var(--success-color);
+            font-weight: 600;
+        }
+        
+        .status-absent {
+            color: var(--danger-color);
+            font-weight: 600;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--gray-color);
+            margin-top: 5px;
+        }
+        
+        .page-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .page-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .page-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .camera-status {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: var(--gray-color);
+        }

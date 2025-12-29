@@ -1,0 +1,17 @@
+com\smartattendence\attendence\entity\Student.class
+com\smartattendence\attendence\repository\AdminRepository.class
+com\smartattendence\attendence\controller\ImageData.class
+com\smartattendence\attendence\services\StudentService.class
+com\smartattendence\attendence\config\WebConfig.class
+com\smartattendence\attendence\controller\AttendanceController.class
+com\smartattendence\attendence\services\AdminService.class
+com\smartattendence\attendence\services\AttendanceService.class
+com\smartattendence\attendence\entity\Attendance.class
+com\smartattendence\attendence\controller\StudentDTO.class
+com\smartattendence\attendence\controller\AttendanceController$FaceMatchDTO.class
+com\smartattendence\attendence\repository\AttendanceRepository.class
+com\smartattendence\attendence\controller\AdminController.class
+com\smartattendence\attendence\controller\StudentController.class
+com\smartattendence\attendence\entity\Admin.class
+com\smartattendence\attendence\repository\StudentRepository.class
+com\smartattendence\attendence\AttendenceApplication.class

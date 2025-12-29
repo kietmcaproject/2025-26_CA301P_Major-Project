@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration - AttendX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/registration.css">
+</head>
+<body>
+  <header>
+    <h1><a href="index.html">AttendX</a></h1>
+    <p class="subtitle">AI-Powered Attendance System</p>
+  </header>
+
+  <div class="container">
+    <h2>Register New Students with Facial Recognition</h2>
+    <div class="content">
+      <div class="form-section">
+        <h2 class="section-title">Student Information</h2>
+        <form id="registrationForm">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter student's full name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter student's email" required>
+          </div>
+          <div class="form-group">
+            <label for="rollNo">Roll Number / ID</label>
+            <input type="text" id="rollNo" placeholder="Enter roll number or ID" required>
+          </div>
+          <div class="form-group">
+            <label for="class">Password</label>
+            <input type="password" id="class" placeholder="Enter Password" required>
+          </div>
+        </form>
+      </div>
+
+      <div class="camera-section">
+        <h2 class="section-title">Facial Registration</h2>
+        <div class="video-container">
+          <div class="camera-placeholder" id="cameraPlaceholder">
+            Camera not started. Click "Start Camera" to begin.
+          </div>
+          <video id="video" autoplay playsinline></video>
+        </div>
+
+        <div class="camera-controls">
+          <button id="startCameraBtn" class="start-camera-btn">Start Camera</button>
+        </div>
+
+        <div class="camera-status" id="cameraStatus">Camera is off</div>
+        <div class="captured-image" id="capturedImageContainer"><span>No images captured yet</span></div>
+      </div>
+    </div>
+
+    <button type="submit" form="registrationForm" class="submit-btn">Register Student</button>
+    <div class="page-link">
+      <p>Go to <a href="attendance.html">Attendance Page</a></p>
+    </div>
+  </div>
+
+  <script>
+    const video = document.getElementById('video');
+    const startCameraBtn = document.getElementById('startCameraBtn');
+    const capturedImageContainer = document.getElementById('capturedImageContainer');
+    const registrationForm = document.getElementById('registrationForm');
+    const cameraPlaceholder = document.getElementById('cameraPlaceholder');
+    const cameraStatus = document.getElementById('cameraStatus');
+
+    let stream = null;
+    let capturedImages = [];
+
+    async function initCamera() {
+      try {
+        alert("Please move your face slowly in front of the camera to capture multiple angles.");
+        stream = await navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 480 } });
+        video.srcObject = stream;
+        video.style.display = 'block';
+        cameraPlaceholder.style.display = 'none';
+        startCameraBtn.style.display = 'none';
+        cameraStatus.textContent = 'Capturing images...';
+        cameraStatus.style.color = '#27ae60';
+        await captureMultipleImages();
+      } catch (err) {
+        alert("Unable to access camera. Please check permissions.");
+        cameraStatus.textContent = 'Error accessing camera';
+        cameraStatus.style.color = '#e74c3c';
+      }
+    }
+
+    async function captureMultipleImages() {
+      capturedImages = [];
+      for (let i = 1; i <= 5; i++) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        capturedImages.push(canvas.toDataURL('image/jpeg'));
+      }
+
+      stream.getTracks().forEach(track => track.stop());
+      video.style.display = 'none';
+      cameraPlaceholder.style.display = 'flex';
+      startCameraBtn.style.display = 'block';
+      cameraStatus.textContent = 'Images captured successfully. Camera turned off.';
+      cameraStatus.style.color = '#2c3e50';
+      capturedImageContainer.innerHTML = capturedImages.map(img => `<img src="${img}" width="100">`).join(' ');
+    }
+
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const rollNo = document.getElementById('rollNo').value.trim();
+      const password = document.getElementById('class').value.trim();
+
+      if (!name || !email || !rollNo || !password) {
+        alert("Please fill all fields");
+        return;
+      }
+
+      if (capturedImages.length < 1) {
+        alert("Please capture images first");
+        return;
+      }
+
+      const studentData = {
+        name,
+        email,
+        registrationNo: rollNo,
+        password,
+        images: capturedImages.map((img, i) => ({
+          fileName: `img${i + 1}.jpg`,
+          data: img.replace(/^data:image\/(png|jpg|jpeg);base64,/, "")
+        }))
+      };
+
+      try {
+        const response = await fetch("http://localhost:9090/api/students/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(studentData)
+        });
+
+        const text = await response.text();
+
+        if (text.includes("ALREADY_REGISTERED")) {
+          alert("⚠️ Already registered Student");
+          return;
+        }
+
+        if (!response.ok && !text.toLowerCase().includes("success")) {
+          throw new Error("Failed to register student");
+        }
+
+        alert(`✅ Student ${name} registered successfully! for mark attendance wait for 2 minutes.`);
+
+        registrationForm.reset();
+        capturedImages = [];
+        capturedImageContainer.innerHTML = `<span>No images captured yet</span>`;
+      } catch (err) {
+        console.error(err);
+        alert("❌ Failed to register student. Please try again.");
+      }
+    }
+
+    startCameraBtn.addEventListener('click', initCamera);
+    registrationForm.addEventListener('submit', handleFormSubmit);
+
+    window.addEventListener('beforeunload', () => {
+      if (stream) stream.getTracks().forEach(track => track.stop());
+    });
+  </script>
+</body>
+</html>

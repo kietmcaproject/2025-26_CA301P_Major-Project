@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance Records</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; padding: 0; }
+    header { background: #2c3e50; color: white; text-align: center; padding: 15px; }
+    .container { width: 90%; margin: 30px auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { padding: 10px; text-align: center; border-bottom: 1px solid #ddd; }
+    th { background: #34495e; color: white; }
+    tr:hover { background: #f2f6fc; }
+    button { padding: 10px 15px; background: #2980b9; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #3498db; }
+  </style>
+</head>
+<body>
+  <header><h1>Student Attendance Records</h1></header>
+  <div class="container">
+    <div class="btn-container">
+      <button onclick="window.location.href='index.html'">🏠 Home</button>
+    </div>
+  <div class="container">
+    <!-- <button onclick="fetchAttendance()">Fetch Attendance</button> -->
+    <table id="attendanceTable">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Registration No</th>
+          <th>Name</th>
+          <th>Timestamp</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    async function fetchAttendance() {
+      try {
+        const response = await fetch("http://localhost:9090/api/attendance/fetch");
+        const data = await response.json();
+
+        const tbody = document.querySelector("#attendanceTable tbody");
+        tbody.innerHTML = "";
+
+        if (!Array.isArray(data) || data.length === 0) {
+          tbody.innerHTML = "<tr><td colspan='4'>No attendance records found</td></tr>";
+          return;
+        }
+
+        data.forEach((rec, index) => {
+          const row = `<tr>
+            <td>${index + 1}</td>
+            <td>${rec.registrationNo}</td>
+            <td>${rec.name}</td>
+            <td>${rec.timestamp}</td>
+          </tr>`;
+          tbody.innerHTML += row;
+        });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    window.onload = fetchAttendance;
+  </script>
+</body>
+</html>
