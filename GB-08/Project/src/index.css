@@ -1,0 +1,228 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* IntervuIQ Design System - All colors, gradients, fonts, etc defined here. 
+All colors MUST be HSL for consistency.
+*/
+
+@layer base {
+  :root {
+    /* Core Brand Colors */
+    --background: 0 0% 100%;
+    --foreground: 210 11% 15%;
+
+    /* Brand Identity - Sea Green/Blue Interview Platform */
+    --primary: 173 58% 39%;        /* Sea Green - Trust, Growth */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 173 45% 55%;   /* Lighter sea green for glows */
+    
+    --secondary: 197 71% 43%;      /* Ocean Blue - Depth, Stability */
+    --secondary-foreground: 0 0% 100%;
+    --secondary-glow: 197 50% 60%; 
+    
+    --accent: 184 77% 34%;         /* Teal - Energy, Progress */
+    --accent-foreground: 0 0% 100%;
+    
+    --support: 186 83% 29%;        /* Deep Teal - Links, Information */
+    --support-foreground: 0 0% 100%;
+
+    /* Surface Colors */
+    --card: 0 0% 100%;
+    --card-foreground: 210 11% 15%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 11% 15%;
+
+    /* Interactive States */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 173 58% 39%;
+
+    /* Semantic Colors */
+    --success: 142 76% 36%;        /* Success green */
+    --success-foreground: 0 0% 100%;
+    --warning: 43 96% 56%;         /* Warning amber */
+    --warning-foreground: 25 95% 11%;
+    --error: 0 84% 60%;           /* Error red */
+    --error-foreground: 0 0% 100%;
+    --info: 221 83% 53%;          /* Info blue */
+    --info-foreground: 0 0% 100%;
+
+    /* Design System Values */
+    --radius: 0.75rem;             /* Rounded-xl for modern feel */
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--secondary-glow)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--secondary) / 0.05));
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100% / 0.8), hsl(0 0% 100% / 0.4));
+
+    /* Shadows */
+    --shadow-sm: 0 2px 4px hsl(var(--primary) / 0.05);
+    --shadow-md: 0 4px 12px hsl(var(--primary) / 0.1);
+    --shadow-lg: 0 8px 25px hsl(var(--primary) / 0.15);
+    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.3);
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark Mode Adjustments */
+    --background: 215 28% 6%;      /* Deep charcoal */
+    --foreground: 210 40% 96%;
+
+    /* Brand colors adapted for dark mode */
+    --primary: 173 45% 55%;        /* Lighter sea green for contrast */
+    --primary-foreground: 215 28% 6%;
+    --primary-glow: 173 40% 65%;
+    
+    --secondary: 197 50% 60%;      /* Lighter ocean blue */
+    --secondary-foreground: 215 28% 6%;
+    --secondary-glow: 197 45% 70%;
+    
+    --accent: 184 60% 50%;         /* Lighter teal */
+    --accent-foreground: 215 28% 6%;
+    
+    --support: 186 65% 45%;        /* Lighter deep teal */
+    --support-foreground: 215 28% 6%;
+
+    /* Dark Mode Surfaces */
+    --card: 215 25% 8%;           /* Slightly lighter than background */
+    --card-foreground: 210 40% 96%;
+    
+    --popover: 215 25% 8%;
+    --popover-foreground: 210 40% 96%;
+
+    /* Dark Mode Interactive */
+    --muted: 215 25% 12%;
+    --muted-foreground: 215 20% 65%;
+    
+    --border: 215 25% 15%;
+    --input: 215 25% 12%;
+    --ring: 173 45% 55%;
+
+    /* Dark Mode Semantics */
+    --success: 150 76% 40%;
+    --success-foreground: 215 28% 6%;
+    --warning: 48 96% 60%;
+    --warning-foreground: 215 28% 6%;
+    --error: 0 84% 65%;
+    --error-foreground: 215 28% 6%;
+    --info: 226 83% 58%;
+    --info-foreground: 215 28% 6%;
+
+    /* Dark Mode Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary) / 0.2), hsl(var(--secondary) / 0.1));
+    --gradient-card: linear-gradient(135deg, hsl(var(--card)), hsl(215 25% 10%));
+
+    /* Dark Mode Shadows */
+    --shadow-sm: 0 2px 4px hsl(0 0% 0% / 0.3);
+    --shadow-md: 0 4px 12px hsl(0 0% 0% / 0.4);
+    --shadow-lg: 0 8px 25px hsl(0 0% 0% / 0.5);
+    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.4);
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-muted/30;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
+  }
+}
+
+@layer utilities {
+  /* Gradient utilities */
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+  
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  /* Shadow utilities */
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Animation utilities */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+
+  /* Typography utilities */
+  .text-gradient {
+    background: var(--gradient-primary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}
