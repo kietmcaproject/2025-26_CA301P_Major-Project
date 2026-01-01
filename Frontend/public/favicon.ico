@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="64" height="64">
+  <defs>
+    <style>
+      .pb-heart { fill: #FF2E2E; }
+      .pb-text { font-family: Arial, sans-serif; font-weight: bold; font-size: 80px; letter-spacing: 2px; }
+      .pb-pulse { fill: #FF2E2E; }
+      .pb-bank { fill: #22C55E; }
+    </style>
+  </defs>
+  
+  <!-- Red Heart -->
+  <path class="pb-heart" d="M 70 60 C 70 45, 55 35, 40 35 C 25 35, 15 45, 15 60 C 15 80, 50 110, 70 135 C 90 110, 125 80, 125 60 C 125 45, 115 35, 100 35 C 85 35, 70 45, 70 60 Z"/>
+  
+  <!-- "Pulse" Text in Red -->
+  <text x="160" y="130" class="pb-text pb-pulse">Pulse</text>
+  
+  <!-- "Bank" Text in Green -->
+  <text x="240" y="130" class="pb-text pb-bank">Bank</text>
+</svg>
